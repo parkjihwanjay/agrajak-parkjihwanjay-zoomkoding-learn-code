@@ -14,8 +14,8 @@ class Brick{
         const OffsetTop = 30;
         const OffsetLeft = 30;
 
-        this.x = width + padding + OffsetLeft; 
-        this.y = width + padding + OffsetTop;
+        this.x = this.width + this.padding + OffsetLeft; 
+        this.y = this.width + this.padding + OffsetTop;
 
         this.draw();
     }
