@@ -36,3 +36,20 @@
 
 - Node.js 디버깅을 VSCode에서 진행하면 DEBUG CONSOLE탭에 어느 포트로 디버거가 돌아가는지 확인할 수 있다.
 - `about://inspect`의 Discover network targets에 디버거 포트를 입력하면 하단의 `Remote Target`에 VSCode로 진행하고 있던 타겟을 확인할 수 있고, 이를 그대로 크롬에서 디버깅할 수 있다.
+
+### Attach하는 법
+
+- 간단한 서버 코드를 작성한다
+```js
+const http = require('http');
+const server = http.createServer((req, res) => {
+    res.end('hello world!');
+})
+
+server.listen(3000);
+```
+- 해당 코드를 `node attach.js` 실행시킨다.
+- 원하는 부분에 중단점을 건다.
+- VSCode 디버깅 툴 옵션 중에서 `Attach By Process`을 선택한다.
+- `attach.js`가 실행되던 터미널에서 `Debugger Attached.` 메세지를 확인할 수 있다.
+- 브라우저로 `http://localhost:3000`에 접속하면 VSCode 디버거가 중단점에 멈춰있는 걸 확인할 수 있다.
