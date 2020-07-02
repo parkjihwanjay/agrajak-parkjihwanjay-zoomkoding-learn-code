@@ -19,10 +19,10 @@ class Canvas {
         return this.ctx;
     }
     getOffsetLeft(){
-        return this.canvas.leftOffset;
+        return this.canvas.offsetLeft;
     }
     clearCanvas(){
-        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        this.ctx.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
     flipDy(){
         this.dy *= -1;

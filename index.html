@@ -13,6 +13,7 @@
 <script src="ball.js"></script>
 <script src="paddle.js"></script>
 <script src="canvas.js"></script>
+<script src="game_info.js"></script>
 <script>
 
     var canvas = new Canvas("myCanvas");
@@ -26,8 +27,11 @@
     var brickPadding = 10;
     var brickOffsetTop = 30;
     var brickOffsetLeft = 30;
-    var score = 0;
-    var lives = 3;
+
+
+
+    var brickCount = brickRowCount * brickColumnCount;
+    var gameInfo = new GameInfo(canvas, brickCount);
 
     var bricks = [];
     for(var c=0; c<brickColumnCount; c++) {
@@ -69,13 +73,9 @@
                 var b = bricks[c][r];
                 if(b.status == 1) {
                     if(ball.x > b.x && ball.x < b.x+brickWidth && ball.y > b.y && ball.y < b.y+brickHeight) {
-                        ball.y = -ball.y;
+                        canvas.flipDy();
                         b.status = 0;
-                        score++;
-                        if(score == brickRowCount*brickColumnCount) {
-                            alert("YOU WIN, CONGRATS!");
-                            document.location.reload();
-                        }
+                        gameInfo.addScore();
                     }
                 }
             }
@@ -100,26 +100,13 @@
             }
         }
     }
-    function drawScore() {
-        var ctx = canvas.getContext();
-        ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: "+score, 8, 20);
-    }
-    function drawLives() {
-        var ctx = canvas.getContext();
-        ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
-        ctx.fillText("Lives: "+lives, canvas.getWidth()-65, 20);
-    }
 
     function draw() {
         canvas.clearCanvas();
         drawBricks();
         ball.draw();
         paddle.draw();
-        drawScore();
-        drawLives();
+        gameInfo.draw();
         collisionDetection();
 
         if(ball.x + canvas.dx > canvas.getWidth()-ball.radius || ball.x + canvas.dx < ball.radius) {
@@ -133,8 +120,8 @@
                 canvas.flipDy();
             }
             else {
-                lives--;
-                if(!lives) {
+                gameInfo.die();
+                if(gameInfo.isOver()) {
                     alert("GAME OVER");
                     document.location.reload();
                 }
