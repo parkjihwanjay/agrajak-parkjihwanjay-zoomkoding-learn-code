@@ -19,16 +19,12 @@
 - 함수가 실행되면 현재 함수의 기록을 스택 맨 위에 추가되고(push), 실행이 끝나면 스택에서 빠진다(pop)
 
 ### 단축키 및 용어 설명
-Continue / Pause F5 
-- 다음 중단점으로 점프
-Step Over F10
-- 다음줄로 점프
-Step Into F11
-- 다음 줄에 함수가 포함되어 있으면 해당 함수로 점프하고 첫 줄에서 멈춥니다.
-Step Out ⇧F11
-- 현재 함수의 나머지 부분을 실행한 다음 함수 호출 뒤 다음 명령문에서 일시중지합니다.
-Restart ⇧⌘F5
-Stop ⇧F5
+- Continue / Pause F5: 다음 중단점으로 점프
+- Step Over F10: 다음줄로 점프
+- Step Into F11: 다음 줄에 함수가 포함되어 있으면 해당 함수로 점프하고 첫 줄에서 멈춥니다.
+- Step Out ⇧F11: 현재 함수의 나머지 부분을 실행한 다음 함수 호출 뒤 다음 명령문에서 일시중지합니다.
+- Restart ⇧⌘F5
+- Stop ⇧F5
 
 ### node.js 디버깅 
 
@@ -37,3 +33,6 @@ Stop ⇧F5
 - launch.json의 항목들은 디버거마다 다르므로 자동완성 기능으로 검색가능
 - Launch와 Attach 두가지 모드가 있음
   - 이미 브라우저의 개발자 도구로 개발 중이라면, 간단하게 Attach함으로써 디버깅이 편하게 가능하다.
+
+- Node.js 디버깅을 VSCode에서 진행하면 DEBUG CONSOLE탭에 어느 포트로 디버거가 돌아가는지 확인할 수 있다.
+- `about://inspect`의 Discover network targets에 디버거 포트를 입력하면 하단의 `Remote Target`에 VSCode로 진행하고 있던 타겟을 확인할 수 있고, 이를 그대로 크롬에서 디버깅할 수 있다.
