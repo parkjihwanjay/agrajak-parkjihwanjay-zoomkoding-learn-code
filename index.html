@@ -9,6 +9,7 @@
 
 <canvas id="myCanvas" width="480" height="320"></canvas>
 
+<script src="game_info.js"></script>
 <script>
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -29,8 +30,11 @@
     var brickPadding = 10;
     var brickOffsetTop = 30;
     var brickOffsetLeft = 30;
-    var score = 0;
-    var lives = 3;
+
+
+
+    var brickCount = brickRowCount * brickColumnCount;
+    var gameInfo = new GameInfo(canvas, ctx, brickCount);
 
     var bricks = [];
     for(var c=0; c<brickColumnCount; c++) {
@@ -74,8 +78,8 @@
                     if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                         dy = -dy;
                         b.status = 0;
-                        score++;
-                        if(score == brickRowCount*brickColumnCount) {
+                        gameInfo.addScore();
+                        if(gameInfo.isWon()){
                             alert("YOU WIN, CONGRATS!");
                             document.location.reload();
                         }
@@ -132,8 +136,7 @@
         drawBricks();
         drawBall();
         drawPaddle();
-        drawScore();
-        drawLives();
+        gameInfo.draw();
         collisionDetection();
 
         if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
@@ -147,8 +150,8 @@
                 dy = -dy;
             }
             else {
-                lives--;
-                if(!lives) {
+                gameInfo.die();
+                if(gameInfo.isOver()) {
                     alert("GAME OVER");
                     document.location.reload();
                 }
