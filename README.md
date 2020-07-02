@@ -32,7 +32,7 @@
 - `.vscode`폴더 안의 `launch.json`파일에 디버깅 설정이 저장되어있음
 - launch.json의 항목들은 디버거마다 다르므로 자동완성 기능으로 검색가능
 - Launch와 Attach 두가지 모드가 있음
-  - 이미 브라우저의 개발자 도구로 개발 중이라면, 간단하게 Attach함으로써 디버깅이 편하게 가능하다.
+  - 이미 nodemon같은 프로그램으로 실행하고 있을 때, 간단하게 Attach함으로써 비쥬얼 스튜디오 코드에서 디버깅이 편하게 가능하다.
 
 - Node.js 디버깅을 VSCode에서 진행하면 DEBUG CONSOLE탭에 어느 포트로 디버거가 돌아가는지 확인할 수 있다.
 - `about://inspect`의 Discover network targets에 디버거 포트를 입력하면 하단의 `Remote Target`에 VSCode로 진행하고 있던 타겟을 확인할 수 있고, 이를 그대로 크롬에서 디버깅할 수 있다.
