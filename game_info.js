@@ -34,6 +34,10 @@ class GameInfo {
 
     addScore() {
         this.score++;
+        if(this.isWon()){
+            alert("YOU WIN, CONGRATS!");
+            document.location.reload();
+        }
     }
 
     die() {
